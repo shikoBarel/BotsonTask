@@ -11,7 +11,7 @@ es = Elasticsearch(
 index_name = config('ELASTICSEARCH_INDEX_NAME')
 
 # Load the test data
-with open('test_data.json', 'r') as f:
+with open('tests/test_data.json', 'r') as f:
     json_data = f.read()
 data = json.loads(json_data)    
 

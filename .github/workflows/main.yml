@@ -16,8 +16,8 @@ jobs:
 
     - name: Start Docker services
       run: |
-        docker-compose up -d
-
+        docker-compose up -d   
+      
     - name: Wait for services to be ready
       run: |
         sleep 120

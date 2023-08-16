@@ -21,3 +21,4 @@ services:
       ELASTICSEARCH_INDEX_NAME: events-testing-botson-reporting
     volumes:
       - .:/usr/src/app
+    command: /bin/bash -c "sleep 200"  

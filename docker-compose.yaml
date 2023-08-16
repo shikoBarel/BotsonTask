@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_USER: elastic
+      ELASTICSEARCH_PASS: changeme
+      ELASTICSEARCH_INDEX_NAME: events-testing-botson-reporting
+    volumes:
+      - .:/usr/src/app
+    command: /bin/bash -c "sleep 120 && python load_test_data.py && pytest test_anomaly_count.py"

@@ -1,0 +1,13 @@
+{
+    "size": 0,
+    "aggs": {
+        "group_by_User_Geo": {
+            "terms": {"field": "User_Geo.keyword"},
+            "aggs": {
+                "group_by_Bot_Name": {
+                    "terms": {"field": "Event_Data.Bot_Name.keyword"}
+                }
+            }
+        }
+    }
+}

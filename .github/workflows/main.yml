@@ -18,10 +18,14 @@ jobs:
       run: |
         docker-compose up -d
 
+    - name: Wait for services to be ready
+      run: |
+        sleep 120
+
     - name: Load test data
       run: |
-        docker-compose exec -T app python load_test_data.py
+        docker-compose exec -T app python tests/load_test_data.py
 
     - name: Run tests
       run: |
-        docker-compose exec -T app pytest test_anomaly_count.py
+        docker-compose exec -T app pytest tests/test_anomaly_count.py

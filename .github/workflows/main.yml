@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: |
-        docker-compose exec -T app bash -c "export PYTHONPATH=/usr/src/app && python tests/test_anomaly_count.py"
+        docker-compose exec -T app bash -c "export PYTHONPATH=/usr/src/app && pytest tests/test_anomaly_count.py"

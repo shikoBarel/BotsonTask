@@ -20,7 +20,7 @@ jobs:
       
     - name: Wait for services to be ready
       run: |
-        sleep 120
+        sleep 40
 
     - name: Load test data
       run: |

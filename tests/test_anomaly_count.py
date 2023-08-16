@@ -1,4 +1,4 @@
-from anomaly_count import AnomalyCount
+from src.anomaly_count import AnomalyCount
 import pytest
 
 class TestAnomalyCount:

@@ -7,18 +7,21 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build Docker image
-      run: docker build -t botson-task-image .
+    - name: Start Docker services
+      run: |
+        docker-compose up -d
 
-    - name: Run Docker container
-      run: docker run --name botson-task-container -d botson-task-image
+    - name: Load test data
+      run: |
+        docker-compose exec -T app python load_test_data.py
 
-    - name: Check container logs
-      run: docker logs botson-task-container
+    - name: Run tests
+      run: |
+        docker-compose exec -T app pytest test_anomaly_count.py
